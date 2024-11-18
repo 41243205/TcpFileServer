@@ -10,38 +10,38 @@ class TcpFileServer : public QDialog
     Q_OBJECT
 
 public:
-    TcpFileServer(QWidget *parent = 0);
+    TcpFileServer(QWidget *parent = nullptr);
     ~TcpFileServer();
 
 public slots:
-    void start();
-    void acceptConnection();
-    void updateServerProgress();
-    void displayError(QAbstractSocket::SocketError socketError);
+    void start();                   // 啟動伺服器
+    void acceptConnection();        // 接受客戶端連線
+    void updateServerProgress();    // 更新伺服器的進度條
+    void displayError(QAbstractSocket::SocketError socketError); // 處理網絡錯誤
 
 private:
-    void askForConnectionDetails(); // 新增方法，用于获取用户输入的 IP 地址和端口号
-
     // UI 控件
-    QProgressBar     *serverProgressBar;
-    QLabel           *serverStatusLabel;
-    QPushButton      *startButton;
-    QPushButton      *quitButton;
-    QDialogButtonBox *buttonBox;
+    QProgressBar     *serverProgressBar; // 進度條
+    QLabel           *serverStatusLabel; // 狀態標籤
+    QPushButton      *startButton;       // 啟動按鈕
+    QPushButton      *quitButton;        // 退出按鈕
+    QDialogButtonBox *buttonBox;         // 按鈕容器
+    QLineEdit        *ipEdit;            // 輸入 IP 地址
+    QSpinBox         *portEdit;          // 輸入端口號
 
-    // 网络相关
-    QTcpServer       tcpServer;
-    QTcpSocket       *tcpServerConnection;
-    qint64           totalBytes;
-    qint64           byteReceived;
-    qint64           fileNameSize;
-    QString          fileName;
-    QFile            *localFile;
-    QByteArray       inBlock;
+    // 網絡相關
+    QTcpServer       tcpServer;          // TCP 伺服器
+    QTcpSocket       *tcpServerConnection; // 伺服器連線
+    qint64           totalBytes;         // 總接收的位元組數
+    qint64           byteReceived;       // 已接收的位元組數
+    qint64           fileNameSize;       // 檔案名稱的大小
+    QString          fileName;           // 檔案名稱
+    QFile            *localFile;         // 本地檔案指針
+    QByteArray       inBlock;            // 接收的數據塊
 
-    // 用户输入的 IP 地址和端口号
-    QString          ipAddress; // 存储 IP 地址
-    int              port;      // 存储端口号
+    // 用戶輸入的 IP 地址和端口號
+    QString          ipAddress;          // 存儲 IP 地址
+    int              port;               // 存儲端口號
 };
 
 #endif // TCPFILESERVER_H
