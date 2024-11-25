@@ -12,9 +12,9 @@ TcpFileSender::TcpFileSender(QWidget *parent)
     clientStatusLabel = new QLabel(QStringLiteral("客戶端就緒"));
 
     // 新增 IP 和 Port 輸入框
-    ipLabel = new QLabel(QStringLiteral("IP 位址："));
-    ipLineEdit = new QLineEdit("192.168.225.147");
-    portLabel = new QLabel(QStringLiteral("埠號："));
+    ipLabel = new QLabel(QStringLiteral("IP 地址："));
+    ipLineEdit = new QLineEdit("127.0.0.1");
+    portLabel = new QLabel(QStringLiteral("端口號："));
     portLineEdit = new QLineEdit("16998");
 
     startButton = new QPushButton(QStringLiteral("開始"));
@@ -54,7 +54,7 @@ TcpFileSender::TcpFileSender(QWidget *parent)
     connect(startButton, &QPushButton::clicked, this, &TcpFileSender::start);
     connect(&tcpClient, &QTcpSocket::connected, this, &TcpFileSender::startTransfer);
     connect(&tcpClient, &QTcpSocket::bytesWritten, this, &TcpFileSender::updateClientProgress);
-    connect(quitButton, &QPushButton::clicked, this, &TcpFileSender::close);
+    connect(quitButton, &QPushButton::clicked, qApp, &QApplication::quit);
 }
 
 void TcpFileSender::openFile()

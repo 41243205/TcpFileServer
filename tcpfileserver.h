@@ -26,8 +26,11 @@ private:
     QPushButton      *startButton;       // 啟動按鈕
     QPushButton      *quitButton;        // 退出按鈕
     QDialogButtonBox *buttonBox;         // 按鈕容器
-    QLineEdit        *ipEdit;            // 輸入 IP 地址
-    QSpinBox         *portEdit;          // 輸入端口號
+
+    QLabel           *ipLabel;           // 顯示 "IP 位址" 標籤
+    QLineEdit        *ipLineEdit;        // 用於輸入 IP 位址
+    QLabel           *portLabel;         // 顯示 "埠號" 標籤
+    QLineEdit        *portLineEdit;      // 用於輸入埠號
 
     // 網絡相關
     QTcpServer       tcpServer;          // TCP 伺服器
